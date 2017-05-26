@@ -380,26 +380,15 @@ describe('gerber parser with gerber files', function() {
       p.write('X1Y1\n')
     })
 
-    it('should warn / detect trailing zeros if possible', function(done) {
-      var warnings = []
-
-      p.on('warning', function(w) {
-        warnings.push(w)
-      })
-
-      p.on('finish', function() {
-        expect(warnings[0].message).to.match(/assuming trailing/)
-        expect(warnings[1].message).to.match(/detected leading/)
+    it('should warn / detect leading if possible', function(done) {
+      p.format.places = [2, 4]
+      p.once('warning', function(w) {
+        expect(w.message).to.match(/detected leading/)
         expect(p.format.zero).to.equal('L')
         done()
       })
 
-      p.write(';FILE_FORMAT=2:4\n')
-      p.write('INCH\n')
-      p.write('G90\n')
-      p.write('T1C0.015\n')
       p.write('X7550Y14000\n')
-      p.end()
     })
   })
 
