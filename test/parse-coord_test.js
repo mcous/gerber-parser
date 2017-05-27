@@ -43,3 +43,21 @@ describe('coordinate parser', function() {
     expect(parseCoord()).to.eql({})
   })
 })
+
+describe('zero detection', function() {
+  it('should detect leading zero supression', function() {
+    expect(parseCoord.detectZero('X10Y10')).to.eql('L')
+  })
+
+  it('should detect trailing zero supression', function() {
+    expect(parseCoord.detectZero('X01Y001')).to.eql('T')
+  })
+
+  it('should return null when not detectable', function() {
+    expect(parseCoord.detectZero('X1Y1')).to.eql(null)
+  })
+
+  it('should return null when a decimal', function() {
+    expect(parseCoord.detectZero('X0.1Y1.0')).to.eql(null)
+  })
+})
