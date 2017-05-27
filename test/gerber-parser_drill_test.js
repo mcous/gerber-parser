@@ -369,6 +369,18 @@ describe('gerber parser with gerber files', function() {
       p.write('X1Y1\nM30\n')
     })
 
+    it('should warn / assume trailing if undetectable after 1000 coordinates', function(done) {
+      p.format.places = [2, 4]
+      p.once('warning', function(w) {
+        expect(w.message).to.match(/assuming trailing/)
+        expect(p.format.zero).to.equal('T')
+        done()
+      })
+      for (var i = 0; i <= 1000; i++) {
+        p.write('X1Y1\n')
+      }
+    })
+
     it('should warn / assume [2, 4] places if missing', function(done) {
       p.format.zero = 'L'
       p.once('warning', function(w) {
