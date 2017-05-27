@@ -366,7 +366,7 @@ describe('gerber parser with gerber files', function() {
         done()
       })
 
-      p.write('X1Y1\n')
+      p.write('X1Y1\nM30\n')
     })
 
     it('should warn / assume [2, 4] places if missing', function(done) {
@@ -377,7 +377,7 @@ describe('gerber parser with gerber files', function() {
         done()
       })
 
-      p.write('X1Y1\n')
+      p.write('X1Y1\nM30\n')
     })
 
     it('should warn / detect leading if possible', function(done) {
@@ -388,7 +388,7 @@ describe('gerber parser with gerber files', function() {
         done()
       })
 
-      p.write('X7550Y14000\n')
+      p.write('X7550Y14000\nM30\n')
     })
   })
 
