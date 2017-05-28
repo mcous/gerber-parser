@@ -118,6 +118,7 @@ describe('gerber parser with gerber files', function() {
     expectResults(expected, done)
     p.write('M00\n')
     p.write('M30\n')
+    p.end()
   })
 
   it('should set notation with G90 and G91', function(done) {
