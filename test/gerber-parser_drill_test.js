@@ -366,7 +366,8 @@ describe('gerber parser with gerber files', function() {
         done()
       })
 
-      p.write('X1Y1\nM30\n')
+      p.write('X1Y1\n')
+      p.end()
     })
 
     it('should warn / assume trailing if undetectable after 1000 coordinates', function(done) {
@@ -389,7 +390,8 @@ describe('gerber parser with gerber files', function() {
         done()
       })
 
-      p.write('X1Y1\nM30\n')
+      p.write('X1Y1\n')
+      p.end()
     })
 
     it('should warn / detect leading if possible', function(done) {
@@ -399,8 +401,7 @@ describe('gerber parser with gerber files', function() {
         expect(p.format.zero).to.equal('L')
         done()
       })
-
-      p.write('X7550Y14000\nM30\n')
+      p.write('X7550Y14000\n')
     })
   })
 
