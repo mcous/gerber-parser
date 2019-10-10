@@ -1,3 +1,9 @@
+# repository deprecated
+
+Development of `gerber-parser` has moved to [tracespace/tracespace][tracespace]!
+
+[tracespace]: https://github.com/tracespace/tracespace
+
 # gerber parser
 
 [![npm](https://img.shields.io/npm/v/gerber-parser.svg?style=flat-square)](https://www.npmjs.com/package/gerber-parser)
@@ -12,20 +18,20 @@ A printed circuit board Gerber and drill file parser. Implemented as a Node tran
 
 `$ npm install gerber-parser`
 
-``` javascript
-var fs = require('fs')
-var gerberParser = require('gerber-parser')
+```javascript
+var fs = require("fs");
+var gerberParser = require("gerber-parser");
 
-var parser = gerberParser()
-parser.on('warning', function(w) {
-  console.warn('warning at line ' + w.line + ': ' + w.message)
-})
+var parser = gerberParser();
+parser.on("warning", function(w) {
+  console.warn("warning at line " + w.line + ": " + w.message);
+});
 
-fs.createReadStream('/path/to/gerber/file.gbr')
+fs.createReadStream("/path/to/gerber/file.gbr")
   .pipe(parser)
-  .on('data', function(obj) {
-    console.log(JSON.stringify(obj))
-  })
+  .on("data", function(obj) {
+    console.log(JSON.stringify(obj));
+  });
 ```
 
 To run in the browser, this module should be bundled with a tool like [browserify](http://browserify.org/) or [webpack](http://webpack.github.io/).
@@ -42,19 +48,19 @@ Code is deployed on tags via [TravisCI](https://travis-ci.org/) and code coverag
 
 ### build scripts
 
-* `$ npm test` - runs Node unit tests, calculates coverage, and runs the `lint` task
-* `$ npm run coverage` - print the coverage report of the last test run
-* `$ npm run coverage:html` - generate an html report for the last test run
-* `$ npm run lint` - lints code
-* `$ npm run test:watch` - runs unit tests and re-runs on changes
-* `$ npm run test:browser` - runs tests in a local browser
-* `$ npm run test:sauce` - runs tests in Sauce Labs on multiple browsers
-  * Sauce Labs account required
-  * Local [.zuulrc](https://github.com/defunctzombie/zuul/wiki/Zuulrc) required
-* `$ npm run ci` - Script for CI server to run
-  * Runs `npm test` and sends coverage report to Coveralls
-  * If not a PR, runs browser tests in Sauce
-  * Not designed to (and won't) run locally
+- `$ npm test` - runs Node unit tests, calculates coverage, and runs the `lint` task
+- `$ npm run coverage` - print the coverage report of the last test run
+- `$ npm run coverage:html` - generate an html report for the last test run
+- `$ npm run lint` - lints code
+- `$ npm run test:watch` - runs unit tests and re-runs on changes
+- `$ npm run test:browser` - runs tests in a local browser
+- `$ npm run test:sauce` - runs tests in Sauce Labs on multiple browsers
+  - Sauce Labs account required
+  - Local [.zuulrc](https://github.com/defunctzombie/zuul/wiki/Zuulrc) required
+- `$ npm run ci` - Script for CI server to run
+  - Runs `npm test` and sends coverage report to Coveralls
+  - If not a PR, runs browser tests in Sauce
+  - Not designed to (and won't) run locally
 
 ### deploying
 
